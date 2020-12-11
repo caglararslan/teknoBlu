@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+ 
+{% block body %}
+<div class="container">
+
+
+{% for article in product_slider %}
+<div class="jumbotron card card-image" style="background-image: url({{article.article_image.url}}); no-repeat center center; background-size: cover; ">
+
+        <div class="col-md-6 px-0" >         
+          <h1 class="display-4 font-italic" style="color:white">{{article.title}}</h1>
+          <span style="color:white">{{article.content|safe|truncatewords:20}}</span>
+          <p class="lead mb-0"><a href="{% url 'article:detail' article.id %}" class="text-white font-weight-bold">Devamını oku...</a></p>
+        </div>
+      </div>
+{% endfor %}
+
+
+      </div><!-- /.row -->
+
+    </main><!-- /.container -->
+
+    <div class="container">
+  <div class="row">
+
+  {% for article in articles %}
+  
+
+
+
+  <div class="card" style="width: 20rem; float: left; margin:10px " >
+  <img class="card-img-top" src="{{article.article_image.url}}" alt="Card image cap" width="250" height="200">
+  <div class="card-body">
+    <a href="{% url 'article:detail' article.id %}" ><h5 class="card-title">{{article.title}}</h5></a>
+    <p class="card-text">{{article.content|safe|truncatewords:20}}</p>
+    <a href="{% url 'article:detail' article.id %}" class="btn btn-outline-dark">Devamını oku</a>
+  </div>
+</div>
+
+
+{% endfor %}
+
+</div>
+</div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <script>
+      Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+      });
+    </script>
+{% endblock body %}

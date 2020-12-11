@@ -1,0 +1,61 @@
+<style>
+.navbar-brand
+{
+    position: relative;
+    background-image: url(https://i.hizliresim.com/OUoYMm.png);
+    width: 190px;
+    height: 35px;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'index' %}">
+         </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      
+       <li class="nav-item">
+        <a class="nav-link" href="{% url 'article:articles' %}"><h4>Anasayfa</h4></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'about' %}"><h4>Hakkımızda</h4></a>
+      </li>
+     
+      
+    </ul>
+    {% if request.user.is_authenticated %}
+    <ul class="navbar-nav ml-auto">
+     <!-- <li class="nav-item">
+        <a class="nav-link" href="{% url 'article:dashboard' %}">Kontrol Paneli</a>
+      </li>
+      -->
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'user:logout' %}"><h4>Çıkış Yap</h4></a>
+      </li>
+      </ul>
+    {% else %}
+    <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'user:login' %}"><h4>Giriş Yap</h4></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'user:register' %}"><h4>Kayıt Ol</h4></a>
+      </li>
+      
+    
+    
+    
+    </ul> 
+    {% endif %}
+
+    
+
+  </div>
+</nav>

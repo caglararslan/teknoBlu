@@ -1,0 +1,115 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="row">
+
+      <!-- Post Content Column -->
+      <div class="col-md-6 offset-md-3">
+
+        <!-- Title -->
+        <h1 class="mt-4">{{article.title}}</h1>
+
+        <!-- Author -->
+        <p class="lead">
+          
+          <a href="#">{{article.author}}</a>
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>{{article.created_date}}</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        {% if article.article_image %}
+        <img class="img-fluid rounded" src="{{article.article_image.url}}" alt=""> 
+        
+        {% endif %}
+            
+
+        <hr>
+
+        <!-- Post Content -->
+        <p class="lead">
+        {{article.content|safe}}
+        
+      
+        
+        
+        </p>
+
+        <hr>
+        
+        <h4>YORUMLAR</h4>
+        <br>
+        {% if comments %}
+        {% for comment in comments %}
+        <div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="https://icons-for-free.com/iconfiles/png/512/human+male+profile+user+icon-1320196240448793481.png" alt="" width="80px" height="80px">
+          <div class="media-body">
+            <h5 class="mt-0">{{comment.comment_author}}</h5>
+            {{comment.comment_date}}<br>
+            {{comment.comment_content}}
+          </div>
+        </div>
+        {% endfor %}
+
+
+        
+        {% else %}
+        <div class="alert alert-danger">
+        Bu makaleye herhangi bir yorum yazılmamış.İlk yorumu yapan siz olun!
+        </div>
+        {% endif %}
+
+{% if request.user.is_authenticated %}
+
+<div class="card my-4">
+          <h5 class="card-header">Yorum Yap</h5>
+          <div class="card-body">
+          
+            <form method="post" action="{% url 'article:comment' article.id %}">
+              {% csrf_token %} 
+              <div class="form-group">
+              
+    
+  </div>
+              <div class="form-group">
+              <label for="formGroupExampleInput">Yorumunuz:</label>
+                <textarea name="comment_content" class="form-control" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-warning">YORUMU GÖNDER</button>
+            </form>
+          </div>
+        </div>
+    
+    </div>
+    {% else %}
+      <div class="alert alert-danger">
+        Yorum yapmak için giriş yapın veya üye olun...
+        </div>
+
+{% endif %}
+
+    <div class="card" style="width: 20rem; float:left; margin:10px; border:0px solid"  >
+  
+   <a href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri}}" target="_blank"><i class="fa fa-facebook-square" style="font-size:48px;color:blue"></i>
+</a>
+
+<a class="twitter-share-button"
+  href="https://twitter.com/intent/tweet?u={{request.build_absolute_uri}}">
+  <i class="fa fa-twitter-square" style="font-size:48px;color:#1DA1F2"></i>
+</a>
+
+<a href="https://www.linkedin.com/shareArticle?mini=true&url=http://swiftforentrepreneurs.com/&title=Be%20first%20%7C%20Join%20Swift%20for%20Entrepreneurs&summary=Swift%20for%20Entrepreneurs%20is%20a%20project-based%20programming%20course%20for%20non-technical%20founders.%20We'll%20learn%20how%20to%20build%20iOS%20apps%20from%20scratch%20using%20Apple's%20new%20programming%20language:%20Swift.%20Be%20first%20and%20learn%20with%20me!&source=http://swiftforentrepreneurs.com/">
+<i class="fa fa-linkedin-square" style="font-size:48px;color:#0072b1"></i>
+</a>
+
+</div>
+
+    
+
+{% endblock body %}

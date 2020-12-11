@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+<style>
+body, html {
+  height: 100%;
+  font-family: "Inconsolata", sans-serif;
+}
+
+.bgimg {
+  background-position: center;
+  background-size: cover;
+  background-image: url("/w3images/coffeehouse.jpg");
+  min-height: 75%;
+}
+
+.menu {
+  display: none;
+}
+</style>
+{% block body %}
+
+
+
+
+<!-- Add a background color and large text to the whole page -->
+<div class="w3-sand w3-grayscale w3-large">
+
+<!-- About Container -->
+<div class="w3-container" id="about">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">teknoBlu hakkında</span></h5>
+    <p>teknoBlu, teknoloji meraklı okuyucularının teknolojik gelişmelerden sade ve en güncel şekilde haberdar olmasını sağlamak amacıyla kurulmuştur. </p>
+    <p>Dünya'dan ve Türkiye'den yer alan haberleri okuyucusuna samimi ve yalın bir dil ile sunmayı amaçlar.</p>
+   <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">İletişim</span></h5>
+    <div class="w3-panel w3-leftbar w3-light-grey">
+    
+      <img src="https://www.flaticon.com/svg/static/icons/svg/174/174855.svg" width="25" height="25"> teknoblucom
+      <br>
+      <img src="https://www.flaticon.com/svg/static/icons/svg/733/733579.svg " width="25" height="25"> teknoblucom 
+      <br>
+       <img src="https://www.flaticon.com/svg/static/icons/svg/561/561127.svg" width="25" height="25"> teknoblu@hotmail.com
+    </div>
+    
+
+{% endblock body %}
